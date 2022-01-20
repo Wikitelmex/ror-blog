@@ -5,6 +5,4 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#show', as: 'user' # we can use the user_path(user) to get the url
   get 'users/:user_id/posts', to: 'posts#index'
   get 'users/:user_id/posts/:id', to: 'posts#show', as: 'post'
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
