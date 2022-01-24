@@ -1,5 +1,9 @@
 # Ruby on Rails Alex's Blog
 
+## Schema
+### Users table
+![image](https://user-images.githubusercontent.com/59240486/150650436-57b4e895-b3c8-40ce-961f-e46389945e24.png)
+
 ## Built with
 - Ruby
 - Ruby on Rails
