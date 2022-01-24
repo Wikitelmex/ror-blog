@@ -4,7 +4,9 @@ class Post < ApplicationRecord
   has_many :likes, foreign_key: 'post_id'
 
   def update_counter(user_id = author_id)
-    User.update(:all, id: user_id, postscounter: :postscounter+=1)
+    user = User.find(user_id)
+    user.increment!(:postscounter)
+    user.save
   end
 
   after_save :update_counter
