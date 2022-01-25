@@ -3,4 +3,7 @@ class ApplicationController < ActionController::Base
   # def index
   # render html: 'hello rails' #this renders directly to html, but normally we use a template ERB
   # end
+  def current_user
+    User.first
+  end
 end
