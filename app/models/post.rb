@@ -1,8 +1,14 @@
 class Post < ApplicationRecord
+  # validations
+  validates :title, presence: true, length: { minimum: 5 }
+  validates :text, presence: true, length: { minimum: 10 }
+
+  # associations
   belongs_to :author, class_name: 'User'
   has_many :comments, foreign_key: 'post_id'
   has_many :likes, foreign_key: 'post_id'
 
+  # callbacks
   def update_counter(user_id = author_id)
     user = User.find(user_id)
     user.increment!(:postscounter)
