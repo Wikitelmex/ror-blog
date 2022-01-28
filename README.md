@@ -34,8 +34,9 @@ In your terminal, enter a git clone and past the link that you copied from the r
 We use Rails built-in testing to test our code. 
 
 You can run those tests locally running:
-
-- `rake`
+- inserts at least one record in users table, inside the test database
+- inserts at least one record in posts table, inside the test database
+- `rspec`
 
 ## Author
 

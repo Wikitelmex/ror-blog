@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @user_index = params[:user_id]
+    @user_path = "/users/#{params[:user_id]}"
+    @user = User.find(params[:user_id])
+    @posts = Post.where(author_id: params[:user_id])
   end
 
   def show
-    @user_index = params[:user_id]
-    @post_index = params[:id]
+    @post = Post.find(params[:id])
+    @comments = Comment.where(post_id: params[:id])
   end
 end
