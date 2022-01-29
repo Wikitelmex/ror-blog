@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
-  # we don't need code here, sinces RoR automatically search in Pages folder, the home file
-  def home; end
+  def home
+    # implement login to redirect to the user page
+    @current_user_page = '/users/' + current_user.id.to_s
+  end
 end

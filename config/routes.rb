@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # get 'users', to: 'users#index'
   # get 'users/:id', to: 'users#show', as: 'user' # we can use the user_path(user) to get the url
   resources :users do 
-    get 'posts', to: 'posts#index'
-    get 'posts/:id', to: 'posts#show', as: 'post'
+    resources :posts, only: [:index, :show, :new, :create] do
+      resources :comments
+    end
   end
 end
