@@ -9,8 +9,7 @@ class PostsController < ApplicationController
     @comments = @post.comments
   end
 
-  def new
-  end
+  def new; end
 
   def create
     @post = Post.new

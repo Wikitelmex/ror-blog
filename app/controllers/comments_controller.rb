@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  def new
-  end
+  def new; end
+
   def create
     @comment = Comment.new
     @comment.author_id = current_user.id
