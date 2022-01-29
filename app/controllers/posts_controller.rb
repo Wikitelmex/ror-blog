@@ -19,7 +19,10 @@ class PostsController < ApplicationController
     @post.author_id = current_user.id
     @post.comments_counter = 0
     @post.likes_counter = 0
-    @post.save
-    redirect_to user_post_path(current_user, @post)
+    if @post.save
+      redirect_to user_post_path(current_user, @post)
+    else
+      render :new
+    end
   end
 end
