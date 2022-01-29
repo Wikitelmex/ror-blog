@@ -9,13 +9,11 @@ class Post < ApplicationRecord
   has_many :likes, foreign_key: 'post_id'
 
   # callbacks
-  def update_counter(user_id = author_id)
-    user = User.find(user_id)
-    user.increment!(:postscounter)
-    user.save
+  def update_counter
+    User.update_counters author_id, postscounter: 1
   end
 
-  after_save :update_counter
+  after_create :update_counter
 
   def recent_comments
     Comment.where(post_id: id).order(created_at: :desc).limit(5)
