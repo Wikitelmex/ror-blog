@@ -21,7 +21,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to user_post_path(current_user, @post)
     else
-      render :new
+      flash[:error] = @post.errors.full_messages.to_sentence
+      redirect_to new_user_post_path
     end
   end
 end
