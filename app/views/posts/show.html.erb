@@ -6,6 +6,7 @@
   </div>
   <p><%= @post.text %></p>
 </div>
+<%= link_to "Like", user_post_create_like_path(post_id: params[:id]) %>
 <%= link_to "Add new comment", user_post_path + '/comments/new' %>
 <div>
   <p>Comments: </p>

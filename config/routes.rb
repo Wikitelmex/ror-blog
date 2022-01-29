@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # get 'users/:id', to: 'users#show', as: 'user' # we can use the user_path(user) to get the url
   resources :users do 
     resources :posts, only: [:index, :show, :new, :create] do
+      get '/likes', to: 'likes#create', as: "create_like"
       resources :comments, only: [:index, :new, :create]
     end
   end
