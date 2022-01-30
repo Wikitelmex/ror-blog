@@ -10,7 +10,7 @@
 <%= link_to "Add new comment", user_post_path + '/comments/new' %>
 <div>
   <p>Comments: </p>
-  <% @comments.each do |comment| %>
+  <% @post.comments.each do |comment| %>
     <p><%= comment.author.name %>: <%= comment.text %></p>
   <% end %>
 </div>
