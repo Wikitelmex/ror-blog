@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject { Post.new(title: 'title', text: 'text') }
+  subject { Post.new(title: 'title', text: 'text', author_id: 1) }
 
   before { subject.save }
 
   it 'title should be present' do
     subject.title = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'author_id should be present' do
+    subject.author_id = nil
     expect(subject).to_not be_valid
   end
 
