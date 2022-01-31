@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @users = User.all
   end
@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def logout
-    binding.break
     session.delete(:user_id)
     redirect_to root_path
   end

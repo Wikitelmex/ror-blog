@@ -3,6 +3,5 @@ class PagesController < ApplicationController
 
   def home
     # implement login to redirect to the user page
-    
   end
 end
