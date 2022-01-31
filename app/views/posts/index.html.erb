@@ -5,7 +5,7 @@
 
 <%= link_to "Add new post", new_user_post_path %>
 
-<% @posts.each_with_index do |post, index| %>
+<% @user.posts.each_with_index do |post, index| %>
   <hr>
   <div class="border col-11">
     <p>Post #<%= index + 1 %>: <%= link_to post.title, user_path(@user.id) + '/posts/' + post.id.to_s %> <%=  %></p>

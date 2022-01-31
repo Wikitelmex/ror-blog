@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  validates :text, presence: true, length: { minimum: 10 }
+
   belongs_to :author, class_name: 'User'
   belongs_to :post
 

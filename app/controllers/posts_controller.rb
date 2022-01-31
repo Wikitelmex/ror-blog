@@ -1,12 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.posts
+    @user = User.includes(:posts).find(params[:user_id])
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comments = @post.comments
+    @post = Post.includes(:comments).find(params[:id])
   end
 
   def new; end
@@ -21,7 +19,8 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to user_post_path(current_user, @post)
     else
-      render :new
+      flash[:error] = @post.errors.full_messages.to_sentence
+      redirect_to new_user_post_path
     end
   end
 end
