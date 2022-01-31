@@ -20,7 +20,7 @@ class PostsController < ApplicationController
       redirect_to user_post_path(current_user, @post)
     else
       flash[:error] = @post.errors.full_messages.to_sentence
-      redirect_to new_user_post_path
+      redirect_to action: 'new'
     end
   end
 end

@@ -19,6 +19,7 @@
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
+    <%= button_to "logout", destroy_user_session_path, method: :delete  %>
     <%= yield %>
   </body>
 </html>
