@@ -1,4 +1,9 @@
 <%= link_to "See all posts", user_posts_path %>
+<% if can? :destroy, @post %>
+  <p>can destroy</p>
+<% else %>
+  <p>cannot destroy</p>
+<% end %>
 <div>
   <div class="d-flex justify-content-between"">
     <div>Post <%= @post.id %> by <%= @post.author.name %></div>

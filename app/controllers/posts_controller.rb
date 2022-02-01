@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @user = User.includes(:posts).find(params[:user_id])
@@ -12,9 +13,10 @@ class PostsController < ApplicationController
   def new; end
 
   def create
+    binding.break
     @post = Post.new
-    @post.title = params[:post][:title]
-    @post.text = params[:post][:text]
+    @post.title = params[:title]
+    @post.text = params[:text]
     @post.author_id = current_user.id
     @post.comments_counter = 0
     @post.likes_counter = 0
