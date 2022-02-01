@@ -1,6 +1,7 @@
 <%= link_to "See all posts", user_posts_path %>
 <% if can? :destroy, @post %>
   <p>can destroy</p>
+  <%= button_to "Delete", user_post_path(@post), method: :delete  %>
 <% else %>
   <p>cannot destroy</p>
 <% end %>

@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   def new; end
 
   def create
-    binding.break
     @post = Post.new
     @post.title = params[:title]
     @post.text = params[:text]
@@ -26,5 +25,11 @@ class PostsController < ApplicationController
       flash[:error] = @post.errors.full_messages.to_sentence
       redirect_to action: 'new'
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_posts_path(current_user)
   end
 end
