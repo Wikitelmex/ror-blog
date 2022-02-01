@@ -5,6 +5,12 @@
 <% else %>
   <p>cannot destroy</p>
 <% end %>
+<% if can? :destroy, @like %>
+  <p>can destroy</p>
+  <%= button_to "Delete", user_post_path(@like), method: :delete  %>
+<% else %>
+  <p>cannot destroy</p>
+<% end %>
 <div>
   <div class="d-flex justify-content-between"">
     <div>Post <%= @post.id %> by <%= @post.author.name %></div>
