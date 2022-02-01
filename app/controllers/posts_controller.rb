@@ -1,10 +1,28 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @user_index = params[:user_id]
+    @user = User.includes(:posts).find(params[:user_id])
   end
 
   def show
-    @user_index = params[:user_id]
-    @post_index = params[:id]
+    @post = Post.includes(:comments).find(params[:id])
+  end
+
+  def new; end
+
+  def create
+    @post = Post.new
+    @post.title = params[:post][:title]
+    @post.text = params[:post][:text]
+    @post.author_id = current_user.id
+    @post.comments_counter = 0
+    @post.likes_counter = 0
+    if @post.save
+      redirect_to user_post_path(current_user, @post)
+    else
+      flash[:error] = @post.errors.full_messages.to_sentence
+      redirect_to action: 'new'
+    end
   end
 end

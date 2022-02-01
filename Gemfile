@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 
+gem 'devise'
+
 # Use local linters in this project
 gem 'rubocop', '>= 1.0', '< 2.0'
 

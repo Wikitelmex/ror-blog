@@ -1,1 +1,22 @@
-<h2>Posts of user <%= @user_index %></h2>
+<h2>Posts of <%= @user.name %></h2>
+
+<%= link_to "Back to the user", user_path(@user.id) %>
+<%= render "user", user: @user %>
+
+<%= link_to "Add new post", new_user_post_path %>
+
+<% @user.posts.each_with_index do |post, index| %>
+  <hr>
+  <div class="border col-11">
+    <p>Post #<%= index + 1 %>: <%= link_to post.title, user_path(@user.id) + '/posts/' + post.id.to_s %> <%=  %></p>
+    <p class="wrapp"><%= post.text.split(' ')[0..15].join(' ') %>...</p>
+    <p align="right">Comments: <%= post.comments_counter || 0 %>, Likes:<%= post.likes_counter || 0 %></p>
+  </div>
+  <p>Comments:</p>
+  <% post.recent_comments.each do |comment| %>
+    <p>
+      <%= comment.author.name %>:
+      <%= comment.text %>
+    </p>
+  <% end %>
+<% end %>

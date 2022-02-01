@@ -1,12 +1,13 @@
 class Like < ApplicationRecord
+  validates :author_id, presence: true
+  validates :post_id, presence: true
+
   belongs_to :author, class_name: 'User'
   belongs_to :post
 
   def update_counter
-    post = Post.find(post_id)
-    post.increment!(:likes_counter)
-    post.save
+    Post.update_counters post_id, likes_counter: 1
   end
 
-  after_save :update_counter
+  after_create :update_counter
 end

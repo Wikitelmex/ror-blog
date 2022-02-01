@@ -1,1 +1,16 @@
-<h2>user id: <%= @user_index %> post id: <%= @post_index %></h2>
+<%= link_to "See all posts", user_posts_path %>
+<div>
+  <div class="d-flex justify-content-between"">
+    <div>Post <%= @post.id %> by <%= @post.author.name %></div>
+    <div>Comments: <%= @post.comments_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %></div>
+  </div>
+  <p><%= @post.text %></p>
+</div>
+<%= link_to "Like", user_post_create_like_path(post_id: params[:id]) %>
+<%= link_to "Add new comment", user_post_path + '/comments/new' %>
+<div>
+  <p>Comments: </p>
+  <% @post.comments.each do |comment| %>
+    <p><%= comment.author.name %>: <%= comment.text %></p>
+  <% end %>
+</div>

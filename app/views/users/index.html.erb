@@ -1,14 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Users</h1>
-
-<div id="users">
+<hr/>
+<table id="users">  
   <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
-</div>
+    <tr>
+      <div class="d-flex mb-2">
 
-<%= link_to "New user", new_user_path %>
+        <div class="border col-2 me-3"><%= user.photo %></div>
+
+        <div class="border col-9 p-2">
+          <h2>
+            <%= link_to user.name, user %>
+          </h2>
+          <p align="right">
+            Number of posts: 
+            <%= user.postscounter %>
+          </p>
+        <div>
+        
+      </div>
+    </tr>
+  <% end %>
+</table>
+
