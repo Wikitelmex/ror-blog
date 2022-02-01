@@ -1,2 +1,7 @@
 <h1>Hello world</h1>
+<% if user_signed_in? && !current_user.confirmed? %>
+  <div>
+    Please confirm your account by clicking the link in the email we sent to <%= current_user.email %>
+  </div>
+<% end %>
 <%= link_to "see all users", users_path %>
