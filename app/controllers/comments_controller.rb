@@ -17,8 +17,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to user_post_path(current_user, params[:post_id])
+    @comment = Comment.find(params[:comment_id])
+    if @comment.destroy
+      redirect_to user_post_path(current_user, params[:post_id])
+    else
+      render plain: 'error deleting comment'
+    end
   end
 end
