@@ -7,12 +7,21 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     @comment.author_id = current_user.id
     @comment.post_id = params[:post_id]
-    @comment.text = params[:comment][:text]
+    @comment.text = params[:text]
     if @comment.save
       redirect_to user_post_path(current_user, params[:post_id])
     else
       flash[:error] = @comment.errors.full_messages.to_sentence
       redirect_to action: 'new'
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:comment_id])
+    if @comment.destroy
+      redirect_to user_post_path(current_user, params[:post_id])
+    else
+      render plain: 'error deleting comment'
     end
   end
 end

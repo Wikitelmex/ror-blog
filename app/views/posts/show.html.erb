@@ -1,4 +1,9 @@
 <%= link_to "See all posts", user_posts_path %>
+<% if can? :destroy, @post %>
+  <%= button_to "Delete post", user_post_path(@post), method: :delete  %>
+<% else %>
+  <p>cannot delete</p>
+<% end %>
 <div>
   <div class="d-flex justify-content-between"">
     <div>Post <%= @post.id %> by <%= @post.author.name %></div>
@@ -12,5 +17,10 @@
   <p>Comments: </p>
   <% @post.comments.each do |comment| %>
     <p><%= comment.author.name %>: <%= comment.text %></p>
+    <% if can? :destroy, comment %>
+      <%= button_to "uncomment", destroy_comment_path(comment_id: comment.id, post_id: :id), method: :delete  %>
+    <% else %>
+      <p>cannot uncomment</p>
+    <% end %>
   <% end %>
 </div>
