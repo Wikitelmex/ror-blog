@@ -11,6 +11,13 @@
 - Html
 - Css
 
+## Requirements
+- VSCode installed
+- Rails 7 installed
+- Ruby 3 installed
+- PostgreSQL installed
+  
+## Installation
 1 - On Github, on the main page of the RoR-blog, click the Code button and copy "Clone with HTTPS" by clicking the copy icon.
 In your terminal, enter a git clone and past the link that you copied from the repository, and press the   Enter
 (e.g. git clone https://github.com/Wikitelmex/RoR-blog.git).
@@ -19,11 +26,15 @@ In your terminal, enter a git clone and past the link that you copied from the r
 
 2 - open your terminal and clone the project running 
 
-`https://github.com/Wikitelmex/RoR-blog.git`
+`git clone https://github.com/Wikitelmex/RoR-blog.git`
 
 3 - install all the gems running
 
 `bundle install`
+
+4 - create the databases
+
+`rails db:create`
 
 4 - to run the project use
 
@@ -34,7 +45,6 @@ In your terminal, enter a git clone and past the link that you copied from the r
 We use Rails built-in testing to test our code. 
 
 You can run those tests locally running:
-- `rake db:seed RAILS_ENV=test --trace` first time to seed the test database
 - `rspec`
 
 ## Author

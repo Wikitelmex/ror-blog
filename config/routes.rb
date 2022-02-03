@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'pages#home' # controller#method => inside the controller, we have the class and method, where we call the view
   # get 'users', to: 'users#index'
