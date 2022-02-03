@@ -6,7 +6,7 @@
 <% end %>
 <div>
   <div class="d-flex justify-content-between"">
-    <div>Post <%= @post.id %> by <%= @post.author.name %></div>
+    <div>Post <%= @post.id %> by <%= @post.author.name %>: <%= @post.title %></div>
     <div>Comments: <%= @post.comments_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %></div>
   </div>
   <p><%= @post.text %></p>

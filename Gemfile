@@ -60,14 +60,14 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
 
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
 
   # Capybara, the library that allows us to interact with the browser using Ruby
-  gem 'capybara'
+  # gem 'capybara'
 
   # The following gems aids with the nuts and bolts
   # of interacting with the browser.
-  gem 'webdrivers'
+  # gem 'webdrivers'
 end
 
 group :development do

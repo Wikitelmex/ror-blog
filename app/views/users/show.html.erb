@@ -17,12 +17,12 @@
   <h2>Recent Posts</h2>
   <% @user.recent_posts.each_with_index do |post, index| %>
     <div class="border col-11">
-      <p>Post #<%= index + 1 %>: <%= post.title %></p>
+      <p>Post #<%= index + 1 %>: <%= link_to post.title, user_path(@user.id) + '/posts/' + post.id.to_s %> <%=  %></p>
       <p><%= post.text %></p>
-      <p align="right">Comments: <%= post.comments_counter || 0 %>, Likes:<%= post.likes_counter || 0 %></p>
+      <p align="right">Comments: <%= post.comments_counter || 0 %>, Likes: <%= post.likes_counter || 0 %></p>
     </div>
   <% end %>
 </div>
 <div class="d-grid gap-2 col-3 mx-auto">
-  <p class="btn btn-outline-primary shadow" align="center"><%= link_to "See all posts", user_path + '/posts' %></p>
+  <p class="btn btn-outline-primary shadow" align="center"><%= link_to "See all posts", user_posts_path(user_id: params[:id]) %></p>
 </div>

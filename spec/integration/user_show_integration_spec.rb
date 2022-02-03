@@ -1,4 +1,3 @@
-# Peter will include tests here.
 require 'rails_helper'
 
 RSpec.describe 'User page', type: :system do
@@ -34,15 +33,26 @@ RSpec.describe 'User page', type: :system do
       expect(page).to have_content(@user.bio)
     end
 
-    it 'shows the right user firs posts' do
+    it 'shows the right user first posts' do
       visit user_path(@user)
       expect(page).to have_content(@user.recent_posts[0].title)
     end
 
-    # it 'shows the right username' do
-  
-    #   visit user_path(@user)
-    #   expect(page).to have_content("photo.jpg included")
-    # end
+    it 'shows the right user first posts' do
+      visit user_path(@user)
+      expect(page).to have_content(@user.recent_posts[0].title)
+    end
+
+    it 'click on the first users post linkto redirect to that post show page' do
+      visit user_path(@user)
+      click_link @user.recent_posts[0].title
+      expect(page).to have_content('Add new comment')
+    end
+
+    it 'click on the see all posts redirects to user posts' do
+      visit user_path(@user)
+      click_link 'See all posts'
+      expect(page).to have_content('Add new post')
+    end
   end
 end

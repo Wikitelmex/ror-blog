@@ -14,23 +14,23 @@ RSpec.describe 'User page', type: :system do
   describe 'index page' do
     it 'shows the right username' do
       visit users_path
-      expect(page).to have_content("alex user name")
+      expect(page).to have_content(@user.name)
     end
 
     it 'shows the right photo' do
       visit users_path
-      expect(page).to have_content("photo.jpg included")
+      expect(page).to have_content(@user.photo)
     end
 
     it 'shows the right posts counter' do
       visit users_path
-      expect(page).to have_content("Number of posts: 1234")
+      expect(page).to have_content("Number of posts: #{@user.postscounter}")
     end
 
     it 'click on the user name' do
       visit users_path
-      click_link "alex user name"
-      expect(page).to have_content("Back to User")
+      click_link 'alex user name'
+      expect(page).to have_content('Back to User')
     end
   end
 end
