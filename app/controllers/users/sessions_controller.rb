@@ -34,7 +34,7 @@ class Users::SessionsController < Devise::SessionsController
           format.json { render json: { error: 'Email or password is invalid' }, status: :unprocessable_entity }
         end
       end
-    else      
+    else
       respond_to do |format|
         format.html do
           flash[:error] = 'Email and password cant be blank'
