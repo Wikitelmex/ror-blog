@@ -11,4 +11,11 @@ Rails.application.routes.draw do
     end
   end
   delete '/comments', to: 'comments#destroy', as: "destroy_comment"
+
+  # API routes
+  namespace :api do    
+    resources :posts, only: [:index, :show, :create, :update, :destroy] do
+      resources :comments, only: [:index, :show, :create, :update, :destroy]
+    end
+  end
 end

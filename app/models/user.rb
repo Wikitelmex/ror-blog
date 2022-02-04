@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  require 'jwt'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,5 +18,9 @@ class User < ApplicationRecord
 
   def recent_posts
     Post.where(author_id: id).order(created_at: :desc).limit(3)
+  end
+
+  def generate_jwt
+    JWT.encode({ id: id, exp: 1.day.from_now.to_i }, Rails.application.secrets.secret_key_base)
   end
 end

@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+  protect_from_forgery with: :null_session
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -14,15 +15,33 @@ class Users::SessionsController < Devise::SessionsController
     if params[:user][:email].present? || params[:user][:password].present?
       user = User.find_by(email: params[:user][:email])
       if user.present? && user.valid_password?(params[:user][:password])
-        sign_in(:user, user)
-        redirect_to root_path
+        respond_to do |format|
+          format.html do
+            sign_in(:user, user)
+            redirect_to root_path
+          end
+          format.json do
+            # binding.break
+            @current_user = user
+          end
+        end
       else
-        flash[:error] = 'Email or password is invalid'
-        redirect_to new_user_session_path
+        respond_to do |format|
+          format.html do
+            flash[:error] = 'Email or password is invalid'
+            redirect_to new_user_session_path
+          end
+          format.json { render json: { error: 'Email or password is invalid' }, status: :unprocessable_entity }
+        end
       end
-    else
-      flash[:error] = 'Email and password cant be blank'
-      redirect_to new_user_session_path
+    else      
+      respond_to do |format|
+        format.html do
+          flash[:error] = 'Email and password cant be blank'
+          redirect_to new_user_session_path
+        end
+        format.json { render json: { error: 'Email and password cant be blank' }, status: :unprocessable_entity }
+      end
     end
   end
 
