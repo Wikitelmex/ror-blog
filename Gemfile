@@ -6,6 +6,8 @@ ruby '3.0.3'
 # Auth
 gem 'devise'
 
+gem 'jwt'
+
 # Use local linters in this project
 gem 'rubocop', '>= 1.0', '< 2.0'
 

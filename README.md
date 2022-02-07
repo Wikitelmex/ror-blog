@@ -40,6 +40,72 @@ In your terminal, enter a git clone and past the link that you copied from the r
 
 `rails s`
 
+## API enpoints
+
+The API endpoints uses JWT authentication, thats why you need to generate a token in the next endpoint:
+
+### Login API endpoint
+`http://localhost:3000/users/sign_in.json`
+
+The body must fit this format
+````
+{
+    "user": {
+        "email": "some@mail.com",
+        "password": "fakepassword"
+    }
+}
+````
+After you put valid credentials in JSON format, you'll get a response like this:
+````
+{
+    "user": {
+        "id": 1,
+        "email": "wikitelmex@gmail.com",
+        "name": "Alex",
+        "bio": "the greatest developer in the entire world",
+        "photo": "alex.jpg",
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjQ0MDk4MTAwfQ.LPt_qeMHPz6NsANBA7zgVzXPHZlgt8MRaH6WnfnBacs"
+    }
+}
+````
+That token is the one that you need in the below endpoints
+
+### Method: Get Posts API endpoint
+`http://localhost:3000/users/1/posts.json` where users/1 is the id of user wich you want to retrieve posts
+with that endpoint, you'll need to add the token to the header, just like this:
+````
+Header:{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjQ0MDk4MTAwfQ.LPt_qeMHPz6NsANBA7zgVzXPHZlgt8MRaH6WnfnBacs"
+}
+````
+
+### Method: Get Comments API endpoint
+`http://localhost:3000/users/1/posts/1/comments.json` where users/1 is the id of user wich you want to retrieve posts, posts/1 is the id of the post
+with that endpoint, you'll need to add the token to the header, just like this:
+````
+Header:{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjQ0MDk4MTAwfQ.LPt_qeMHPz6NsANBA7zgVzXPHZlgt8MRaH6WnfnBacs"
+}
+````
+
+
+### Method: Post Comments API endpoint
+`http://localhost:3000/users/1/posts/1/comments.json` where users/1 is the id of user wich you want to retrieve posts, posts/1 is the id of the post
+with that endpoint, you'll need to add the token to the header, just like this:
+````
+Header:{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjQ0MDk4MTAwfQ.LPt_qeMHPz6NsANBA7zgVzXPHZlgt8MRaH6WnfnBacs"
+}
+# the body don't need author_id, because is retrieved from the id of the token
+Body: {
+  {
+    "post_id": 1,
+    "text": "this comment is from API 1"
+  }
+}
+````
+
 ## Testing
 
 We use Rails built-in testing to test our code. 
